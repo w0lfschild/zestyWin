@@ -71,7 +71,7 @@ bool enabled;
 -(void)zest_setKey:(NSString*)key {
     if (![userPrefs containsObject:key])
     {
-        NSLog(@"Adding key: %@", key);
+//        NSLog(@"Adding key: %@", key);
         [userPrefs addObject:key];
     }
 }
@@ -80,9 +80,10 @@ bool enabled;
     if (!shared) {
         shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.w0lf.zestyWin"];
         userPrefs = [[NSMutableArray alloc] initWithArray:[[shared dictionaryRepresentation] allKeys]];
-        NSLog(@"%@", userPrefs);
+//        NSLog(@"%@", userPrefs);
     }
     
+    [plugin zest_setKey:@"com.apple.finder"];
     [plugin zest_setKey:@"com.apple.iTunes"];
     [plugin zest_setKey:@"com.apple.Terminal"];
     [plugin zest_setKey:@"com.apple.TextEdit"];
@@ -120,13 +121,12 @@ ZKSwizzleInterface(_zest_NSWindow, NSWindow, NSResponder);
             }
             if (addzest)
             {
-                NSLog(@"Adding blur to %@", self);
+//                NSLog(@"Adding blur to %@", self);
                 [[this contentView] addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
             }
         }
     }
 }
-//-(void)
 
 @end
 
