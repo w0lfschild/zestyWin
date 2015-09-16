@@ -1,4 +1,4 @@
-# zestyWin - [Download](https://github.com/w0lfschild/SIMBLPlugins/raw/master/zestyWin/zestyWin.zip)
+# zestyWin - [Download](https://github.com/w0lfschild/zestyWIn/raw/master/zestyWin.zip)
 
 ![preview](zestyWin.png) 
 
