@@ -13,8 +13,8 @@
 
 - Some applications may look bad or crash
 - Applications that do no use NSWindow will not be effected
-- To blacklist zestyWin from injecting into an application add that applications bundle ID to the zestyWin preference file
-- You can accomplish this simply by running the following terminal command (replacing Steam with the name of your application):
+- To blacklist zestyWin from load for an app add that app bundle ID to the zestyWin preference file
+- You can accomplish this by running the following terminal command (replace Steam with your app):
     - `defaults write com.w0lf.zestyWin $(osascript -e 'id of app "Steam"') 0`
 - Automatically blacklisted applications include:
     - Finder 
