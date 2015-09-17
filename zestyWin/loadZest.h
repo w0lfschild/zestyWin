@@ -6,5 +6,11 @@
 //  Copyright © 2015 Wolfgang Baird. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ZKSwizzle.h"
+@import AppKit;
 
+@interface loadZest : NSObject
+@end
+
+@interface NSWindow (zest)
+@end

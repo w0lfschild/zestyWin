@@ -6,18 +6,12 @@
 //  Copyright © 2015 Wolfgang Baird. All rights reserved.
 //
 
-#import "ZKSwizzle.h"
 #import "loadZest.h"
-@import AppKit;
-
-@interface loadZest : NSObject
-@end
 
 loadZest *plugin;
-NSInteger osx_ver;
-NSUserDefaults *shared = nil;
-NSMutableArray *userPrefs;
-bool enabled;
+NSUserDefaults *sharedPrefs;
+NSDictionary *sharedDict;
+bool enabled = true;
 
 @implementation loadZest
 
@@ -33,17 +27,16 @@ bool enabled;
 
 + (void)load {
     plugin = [loadZest sharedInstance];
-    osx_ver = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
-    
+    NSInteger osx_ver = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
+    // Don't do anything if user isn't running 10.10 or above
     if (osx_ver > 9) {
-        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
         [plugin zest_setupPrefs];
-        enabled = true;
-        if ([userPrefs containsObject:bundleIdentifier])
+        // Check if application is blacklisted
+        if ([sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] != nil)
+        {
             enabled = false;
-//        NSLog(@"%@", bundleIdentifier);
-//        NSLog(@"%hhd", [userPrefs containsObject:bundleIdentifier]);
-//        NSLog(@"%@", userPrefs);
+        }
+        // If application is not blacklisted add vibrant window to all current application windows
         if (enabled)
         {
             NSLog(@"OS X 10.%ld, zestyWin loaded...", (long)osx_ver);
@@ -52,49 +45,72 @@ bool enabled;
             {
                 for (NSWindow *win in application.windows)
                 {
-                    Class vibrantClass=NSClassFromString(@"NSVisualEffectView");
-                    if (vibrantClass)
-                    {
-                        NSVisualEffectView *vibrant=[[vibrantClass alloc] initWithFrame:[[win contentView] bounds]];
-                        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-                        [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-                        [vibrant setIdentifier:@"cView"];
-                        if (![win.contentView.subviews containsObject:vibrant])
-                            [[win contentView] addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
-                    }
+                    [plugin zest_addView:win];
                 }
             }
         }
     }
 }
 
--(void)zest_setKey:(NSString*)key {
-    if (![userPrefs containsObject:key])
+- (void)zest_addView:(NSWindow*)theWindow {
+    // Something else that can be foreced but just looks aweful 90% of the time (this is why dark mode only exists for a few select apps)
+    // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+    // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+    // [theWindow invalidateShadow];
+    
+    Class vibrantClass=NSClassFromString(@"NSVisualEffectView");
+    if (vibrantClass)
     {
-//        NSLog(@"Adding key: %@", key);
-        [userPrefs addObject:key];
+        bool addzest = true;
+        // Look for existing instance of a vibrant view
+        for (NSView *aVeiw in theWindow.contentView.subviews)
+        {
+            if ([[aVeiw identifier] isEqualToString:@"cView"])
+            {
+                addzest = false;
+                break;
+            }
+        }
+        // If not found add vibrant view
+        if (addzest)
+        {
+            NSVisualEffectView *vibrant=[[vibrantClass alloc] initWithFrame:[[theWindow contentView] bounds]];
+            [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+            [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
+            [vibrant setIdentifier:@"cView"];
+            [[theWindow contentView] addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
+        }
+    }
+}
+
+-(void)zest_setKey:(NSString*)key {
+    // Add application to blacklist if it doesn't already exist
+    if ([sharedDict objectForKey:key] == nil)
+    {
+        // NSLog(@"Adding key: %@", key);
+        [sharedPrefs setInteger:0 forKey:key];
     }
 }
 
 -(void)zest_setupPrefs {
-    if (!shared) {
-        shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.w0lf.zestyWin"];
-        userPrefs = [[NSMutableArray alloc] initWithArray:[[shared dictionaryRepresentation] allKeys]];
-//        NSLog(@"%@", userPrefs);
+    if (!sharedPrefs)
+    {
+        sharedPrefs = [[NSUserDefaults alloc] initWithSuiteName:@"com.w0lf.zestyWin"];
+        sharedDict = [sharedPrefs dictionaryRepresentation];
     }
-    
+    // Manual blacklist
     [plugin zest_setKey:@"com.apple.finder"];
     [plugin zest_setKey:@"com.apple.iTunes"];
     [plugin zest_setKey:@"com.apple.Terminal"];
-    [plugin zest_setKey:@"com.apple.TextEdit"];
     [plugin zest_setKey:@"com.sublimetext.2"];
     [plugin zest_setKey:@"com.sublimetext.3"];
+    [plugin zest_setKey:@"org.w0lf.cDock"];
+    // TextEdit is my favorite: Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'thanks, but I need to control my own subviews'
+    [plugin zest_setKey:@"com.apple.TextEdit"];
+    
+    [sharedPrefs synchronize];
 }
 
-@end
-
-@interface NSWindow (zest)
-- (id)init;
 @end
 
 ZKSwizzleInterface(_zest_NSWindow, NSWindow, NSResponder);
@@ -102,29 +118,10 @@ ZKSwizzleInterface(_zest_NSWindow, NSWindow, NSResponder);
 
 - (void)becomeKeyWindow {
     ZKOrig(void);
-//    NSLog(@"c");
+    // If the window gained focus check if it has a vibrant view or not and if doesn't add one
     if (enabled)
     {
-        Class vibrantClass=NSClassFromString(@"NSVisualEffectView");
-        if (vibrantClass)
-        {
-            NSWindow *this = (NSWindow*)self;
-            NSVisualEffectView *vibrant=[[vibrantClass alloc] initWithFrame:[[this contentView] bounds]];
-            [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
-            [vibrant setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-            [vibrant setIdentifier:@"cView"];
-            bool addzest = true;
-            for (NSView *aVeiw in this.contentView.subviews)
-            {
-                if ([[aVeiw identifier] isEqualToString:@"cView"])
-                    addzest = false;
-            }
-            if (addzest)
-            {
-//                NSLog(@"Adding blur to %@", self);
-                [[this contentView] addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
-            }
-        }
+        [plugin zest_addView:(NSWindow*)self];
     }
 }
 
