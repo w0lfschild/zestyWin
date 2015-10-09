@@ -105,6 +105,10 @@ bool enabled = true;
     [plugin zest_setKey:@"com.sublimetext.2"];
     [plugin zest_setKey:@"com.sublimetext.3"];
     [plugin zest_setKey:@"org.w0lf.cDock"];
+    [plugin zest_setKey:@"org.w0lf.cDock-GUI"];
+    [plugin zest_setKey:@"com.apple.dt.Xcode"];
+    [plugin zest_setKey:@"com.apple.notificationcenterui"];    
+    
     // TextEdit is my favorite: Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'thanks, but I need to control my own subviews'
     [plugin zest_setKey:@"com.apple.TextEdit"];
     
