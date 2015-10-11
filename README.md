@@ -4,7 +4,7 @@
 
 # Information:
 
-- zestyWin is a SIMBL plugin that tries to add Vibrancy to every application window on OS X 10.10+
+- zestyWin is a SIMBL plugin that tries to add Vibrancy to every application window on OS X
 - Designed for 10.10+
 - Author: [w0lfschild](https://github.com/w0lfschild)
 
@@ -16,12 +16,16 @@
 - To blacklist zestyWin from load for an app add that app bundle ID to the zestyWin preference file
 - You can accomplish this by running the following terminal command (replace Steam with your app):
     - `defaults write com.w0lf.zestyWin $(osascript -e 'id of app "Steam"') 0`
+
 - Automatically blacklisted applications include:
     - Finder 
     - TextEdit
     - iTunes
     - Terminal
     - Sublime Text
+    - Xcode
+    - Notification Center
+    - cDock
 
 # Installation:
 
