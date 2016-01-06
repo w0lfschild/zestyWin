@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>zestyWin-GUI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>zestyWin.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,26 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>FB16B34B1BA7D821009F455F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB61D7091C3CA19700FA3C4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB61D71E1C3CA19700FA3C4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB61D7291C3CA19700FA3C4C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FB61D73D1C3CA27D00FA3C4C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

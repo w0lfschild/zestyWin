@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		FB16B3571BA7D863009F455F /* loadZest.m in Sources */ = {isa = PBXBuildFile; fileRef = FB16B3561BA7D863009F455F /* loadZest.m */; };
 		FB16B35C1BA7FCE2009F455F /* ZKSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = FB16B35B1BA7FCE2009F455F /* ZKSwizzle.m */; };
+		FB61D7421C3CA27D00FA3C4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB61D7411C3CA27D00FA3C4C /* AppDelegate.m */; };
+		FB61D7451C3CA27D00FA3C4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB61D7441C3CA27D00FA3C4C /* main.m */; };
+		FB61D7471C3CA27D00FA3C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB61D7461C3CA27D00FA3C4C /* Assets.xcassets */; };
+		FB61D74A1C3CA27D00FA3C4C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB61D7481C3CA27D00FA3C4C /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,10 +22,24 @@
 		FB16B3561BA7D863009F455F /* loadZest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loadZest.m; sourceTree = "<group>"; };
 		FB16B35A1BA7FCE2009F455F /* ZKSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKSwizzle.h; sourceTree = "<group>"; };
 		FB16B35B1BA7FCE2009F455F /* ZKSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKSwizzle.m; sourceTree = "<group>"; };
+		FB61D73E1C3CA27D00FA3C4C /* zestyWin-GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zestyWin-GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB61D7401C3CA27D00FA3C4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FB61D7411C3CA27D00FA3C4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FB61D7441C3CA27D00FA3C4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FB61D7461C3CA27D00FA3C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FB61D7491C3CA27D00FA3C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FB61D74B1C3CA27D00FA3C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB16B3491BA7D821009F455F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB61D73B1C3CA27D00FA3C4C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -35,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				FB16B34E1BA7D821009F455F /* zestyWin */,
+				FB61D73F1C3CA27D00FA3C4C /* zestyWin-GUI */,
 				FB16B34D1BA7D821009F455F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				FB16B34C1BA7D821009F455F /* zestyWin.bundle */,
+				FB61D73E1C3CA27D00FA3C4C /* zestyWin-GUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +87,27 @@
 			path = ZKSwizzle;
 			sourceTree = "<group>";
 		};
+		FB61D73F1C3CA27D00FA3C4C /* zestyWin-GUI */ = {
+			isa = PBXGroup;
+			children = (
+				FB61D7401C3CA27D00FA3C4C /* AppDelegate.h */,
+				FB61D7411C3CA27D00FA3C4C /* AppDelegate.m */,
+				FB61D7461C3CA27D00FA3C4C /* Assets.xcassets */,
+				FB61D7481C3CA27D00FA3C4C /* MainMenu.xib */,
+				FB61D74B1C3CA27D00FA3C4C /* Info.plist */,
+				FB61D7431C3CA27D00FA3C4C /* Supporting Files */,
+			);
+			path = "zestyWin-GUI";
+			sourceTree = "<group>";
+		};
+		FB61D7431C3CA27D00FA3C4C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB61D7441C3CA27D00FA3C4C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -88,6 +129,23 @@
 			productReference = FB16B34C1BA7D821009F455F /* zestyWin.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
+		FB61D73D1C3CA27D00FA3C4C /* zestyWin-GUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB61D74C1C3CA27D00FA3C4C /* Build configuration list for PBXNativeTarget "zestyWin-GUI" */;
+			buildPhases = (
+				FB61D73A1C3CA27D00FA3C4C /* Sources */,
+				FB61D73B1C3CA27D00FA3C4C /* Frameworks */,
+				FB61D73C1C3CA27D00FA3C4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "zestyWin-GUI";
+			productName = "zestyWin-GUI";
+			productReference = FB61D73E1C3CA27D00FA3C4C /* zestyWin-GUI.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -100,6 +158,9 @@
 					FB16B34B1BA7D821009F455F = {
 						CreatedOnToolsVersion = 7.1;
 					};
+					FB61D73D1C3CA27D00FA3C4C = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = FB16B3471BA7D821009F455F /* Build configuration list for PBXProject "zestyWin" */;
@@ -108,6 +169,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = FB16B3431BA7D821009F455F;
 			productRefGroup = FB16B34D1BA7D821009F455F /* Products */;
@@ -115,6 +177,7 @@
 			projectRoot = "";
 			targets = (
 				FB16B34B1BA7D821009F455F /* zestyWin */,
+				FB61D73D1C3CA27D00FA3C4C /* zestyWin-GUI */,
 			);
 		};
 /* End PBXProject section */
@@ -124,6 +187,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB61D73C1C3CA27D00FA3C4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB61D7471C3CA27D00FA3C4C /* Assets.xcassets in Resources */,
+				FB61D74A1C3CA27D00FA3C4C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +228,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB61D73A1C3CA27D00FA3C4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB61D7451C3CA27D00FA3C4C /* main.m in Sources */,
+				FB61D7421C3CA27D00FA3C4C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FB61D7481C3CA27D00FA3C4C /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB61D7491C3CA27D00FA3C4C /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FB16B3501BA7D821009F455F /* Debug */ = {
@@ -264,6 +356,32 @@
 			};
 			name = Release;
 		};
+		FB61D74D1C3CA27D00FA3C4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "zestyWin-GUI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.w0lf.zestyWin-GUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FB61D74E1C3CA27D00FA3C4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "zestyWin-GUI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.w0lf.zestyWin-GUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -284,6 +402,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		FB61D74C1C3CA27D00FA3C4C /* Build configuration list for PBXNativeTarget "zestyWin-GUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB61D74D1C3CA27D00FA3C4C /* Debug */,
+				FB61D74E1C3CA27D00FA3C4C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
