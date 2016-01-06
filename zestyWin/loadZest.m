@@ -31,11 +31,16 @@ bool enabled = true;
     // Don't do anything if user isn't running 10.10 or above
     if (osx_ver > 9) {
         [plugin zest_setupPrefs];
-        // Check if application is blacklisted
-        if ([sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] != nil)
-        {
+        
+//        NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
+//        NSLog(@"%@", sharedDict);
+//        NSLog(@"%@", [[sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] class]);
+//        NSLog(@"%@", (NSNumber *)[sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]]);
+        
+         // Check if application is blacklisted
+        if ([sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] == [NSNumber numberWithUnsignedInteger:0])
             enabled = false;
-        }
+        
         // If application is not blacklisted add vibrant window to all current application windows
         if (enabled)
         {
@@ -95,7 +100,7 @@ bool enabled = true;
 -(void)zest_setupPrefs {
     if (!sharedPrefs)
     {
-        sharedPrefs = [[NSUserDefaults alloc] initWithSuiteName:@"com.w0lf.zestyWin"];
+        sharedPrefs = [[NSUserDefaults alloc] initWithSuiteName:@"org.w0lf.zestyWin"];
         sharedDict = [sharedPrefs dictionaryRepresentation];
     }
     // Manual blacklist
@@ -104,13 +109,12 @@ bool enabled = true;
     [plugin zest_setKey:@"com.apple.Terminal"];
     [plugin zest_setKey:@"com.sublimetext.2"];
     [plugin zest_setKey:@"com.sublimetext.3"];
+    [plugin zest_setKey:@"com.apple.dt.Xcode"];
+    [plugin zest_setKey:@"com.apple.notificationcenterui"];
+    [plugin zest_setKey:@"com.google.Chrome.canary"];
+    [plugin zest_setKey:@"com.apple.TextEdit"];
     [plugin zest_setKey:@"org.w0lf.cDock"];
     [plugin zest_setKey:@"org.w0lf.cDock-GUI"];
-    [plugin zest_setKey:@"com.apple.dt.Xcode"];
-    [plugin zest_setKey:@"com.apple.notificationcenterui"];    
-    
-    // TextEdit is my favorite: Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'thanks, but I need to control my own subviews'
-    [plugin zest_setKey:@"com.apple.TextEdit"];
     
     [sharedPrefs synchronize];
 }
