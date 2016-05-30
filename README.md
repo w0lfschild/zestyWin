@@ -1,39 +1,27 @@
-# zestyWin - [Download](https://github.com/w0lfschild/zestyWIn/raw/master/zestyWin.zip)
+# zestyWin - [Download](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.bundle.zip)
 
 ![preview](zestyWin.png) 
 
 # Information:
 
-- zestyWin is a SIMBL plugin that tries to add Vibrancy to every application window on OS X
-- Designed for 10.10+
+- Designed for 10.10+   
+- zestyWin is a SIMBL plugin that tries to add Vibrancy to every application window on OS X    
 - Author: [w0lfschild](https://github.com/w0lfschild)
 
-
-# Warnings:
+# Note:
 
 - Some applications may look bad or crash
-- Applications that do no use NSWindow will not be effected
-- To blacklist zestyWin from load for an app add that app bundle ID to the zestyWin preference file
-- You can accomplish this by running the following terminal command (replace Steam with your app):
-    - `defaults write com.w0lf.zestyWin $(osascript -e 'id of app "Steam"') 0`
-
-- Automatically blacklisted applications include:
-    - Finder 
-    - TextEdit
-    - iTunes
-    - Terminal
-    - Sublime Text
-    - Xcode
-    - Notification Center
-    - cDock
+- Applications with custom windows will likely not be effected
+- You blacklist an app using the GUI or terminal:
+    - `defaults write org.w0lf.zestyWin $(osascript -e 'id of app "Steam"') 0`
 
 # Installation:
 
-1. Install SIMBL
-2. Download zestyWin bundle
-3. Unzip download
-4. Copy to ``/Library/Application Support/SIMBL/Plugins``
-5. Restart applications to have zestWin plugin loaded into them
+1. Download [mySIMBL](https://github.com/w0lfschild/app_updates/raw/master/mySIMBL/mySIMBL_0.2.5.zip)
+2. Download [zestyWin](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.bundle.zip)
+3. Unzip downloads
+4. Open `zestyWin.bundle` with `mySIMBL.app`
+5. Restart any application to have zestWin plugin loaded into it
 	
 ### License:
 Pretty much the BSD license, just don't repackage it and call it your own please!    
