@@ -18,7 +18,7 @@
 # Installation:
 
 1. Download [mySIMBL](https://github.com/w0lfschild/app_updates/raw/master/mySIMBL/mySIMBL_0.2.5.zip)
-2. Download [zestyWin](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.bundle.zip)
+2. Download [zestyWin](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.zip)
 3. Unzip downloads
 4. Open `zestyWin.bundle` with `mySIMBL.app`
 5. Restart any application to have zestWin plugin loaded
