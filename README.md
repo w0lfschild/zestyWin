@@ -1,6 +1,6 @@
-# zestyWin - [Download](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.bundle.zip)
+# zestyWin
 
-![preview](zestyWin.png) 
+![preview](preview.png) 
 
 # Information:
 
@@ -13,7 +13,7 @@
 - Some applications may look bad or crash
 - Applications with custom windows will likely not be effected
 - You blacklist an app using the GUI or terminal:
-    - `defaults write org.w0lf.zestyWin $(osascript -e 'id of app "Steam"') 0`
+    - `defaults write org.w0lf.zestyWin $(osascript -e 'id of app "Application Name"') 0`
 
 # Installation:
 
@@ -21,7 +21,7 @@
 2. Download [zestyWin](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.bundle.zip)
 3. Unzip downloads
 4. Open `zestyWin.bundle` with `mySIMBL.app`
-5. Restart any application to have zestWin plugin loaded into it
+5. Restart any application to have zestWin plugin loaded
 	
 ### License:
 Pretty much the BSD license, just don't repackage it and call it your own please!    
