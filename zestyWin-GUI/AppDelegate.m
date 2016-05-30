@@ -61,7 +61,8 @@ NSDictionary *sharedDict;
     // set the scrollView as the window's contentView
     // this replaces the existing contentView and retains
     // the scrollView, so we can release it now
-    [_mainWindow setContentView:scrollView];
+//    [_mainWindow setContentView:scrollView];
+    [[_mainWindow contentView] addSubview:scrollView];
 }
 
 - (void)readFolder:(NSString *)str :(NSMutableDictionary *)dict {
@@ -108,7 +109,7 @@ NSDictionary *sharedDict;
             [newButton setTitle:[myApp objectAtIndex:0]];
             [newButton sizeToFit];
             [newButton setAction:@selector(toggleItem:)];
-            if ([sharedDict valueForKey:[myApp objectAtIndex:2]]  == [NSNumber numberWithUnsignedInteger:0]) {
+            if ([sharedDict valueForKey:[myApp objectAtIndex:2]] == [NSNumber numberWithUnsignedInteger:0]) {
                 //                NSLog(@"\n\nApplication: %@\nBundle ID: %@\n\n", app, bundleString);
                 [newButton setState:NSOnState];
             } else {

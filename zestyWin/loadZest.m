@@ -3,80 +3,72 @@
 //  zestyWin
 //
 //  Created by Wolfgang Baird on 9/14/15.
-//  Copyright © 2015 Wolfgang Baird. All rights reserved.
+//  Copyright © 2015 - 2016 Wolfgang Baird. All rights reserved.
 //
 
-#import "loadZest.h"
+@import AppKit;
+
+@interface loadZest : NSObject
+@end
 
 loadZest *plugin;
 NSUserDefaults *sharedPrefs;
 NSDictionary *sharedDict;
 bool enabled = true;
+Class vibrantClass = nil;
 
 @implementation loadZest
 
 + (loadZest*) sharedInstance
 {
     static loadZest* plugin = nil;
-    
     if (plugin == nil)
         plugin = [[loadZest alloc] init];
-    
     return plugin;
 }
 
 + (void)load {
     plugin = [loadZest sharedInstance];
     NSInteger osx_ver = [[NSProcessInfo processInfo] operatingSystemVersion].minorVersion;
-    // Don't do anything if user isn't running 10.10 or above
     if (osx_ver > 9) {
-        [plugin zest_setupPrefs];
-        
-//        NSLog(@"%@", [[NSBundle mainBundle] bundleIdentifier]);
-//        NSLog(@"%@", sharedDict);
-//        NSLog(@"%@", [[sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] class]);
-//        NSLog(@"%@", (NSNumber *)[sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]]);
-        
-         // Check if application is blacklisted
-        if ([sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] == [NSNumber numberWithUnsignedInteger:0])
-            enabled = false;
-        
-        // If application is not blacklisted add vibrant window to all current application windows
-        if (enabled)
+        vibrantClass=NSClassFromString(@"NSVisualEffectView");
+        if (vibrantClass)
         {
-            NSLog(@"OS X 10.%ld, zestyWin loaded...", (long)osx_ver);
-            NSApplication *application = [NSApplication sharedApplication];
-            if (application.windows)
+            [plugin zest_setupPrefs];
+            if ([sharedDict objectForKey:[[NSBundle mainBundle] bundleIdentifier]] == [NSNumber numberWithUnsignedInteger:0])
+                enabled = false;
+            if (enabled)
             {
-                for (NSWindow *win in application.windows)
-                {
+                NSLog(@"OS X 10.%ld, zestyWin loaded...", (long)osx_ver);
+                for (NSWindow *win in [NSApplication sharedApplication].windows)
                     [plugin zest_addView:win];
-                }
+                [[NSNotificationCenter defaultCenter] addObserver:plugin
+                                                         selector:@selector(_addView:)
+                                                             name:NSWindowDidBecomeKeyNotification
+                                                           object:nil];
             }
+ 
         }
     }
 }
 
+- (void)_addView:(NSNotification *)notification {
+    [plugin zest_addView:[notification object]];
+}
+
 - (void)zest_addView:(NSWindow*)theWindow {
-    // Something else that can be foreced but just looks aweful 90% of the time (this is why dark mode only exists for a few select apps)
-    // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
-    // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
-    // [theWindow invalidateShadow];
-    
-    Class vibrantClass=NSClassFromString(@"NSVisualEffectView");
-    if (vibrantClass)
+    if (enabled)
     {
+        // Something else that can be foreced but just looks aweful 90% of the time
+        // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantDark];
+        // theWindow.appearance = [NSAppearance appearanceNamed:NSAppearanceNameVibrantLight];
+        // [theWindow invalidateShadow];
         bool addzest = true;
-        // Look for existing instance of a vibrant view
         for (NSView *aVeiw in theWindow.contentView.subviews)
-        {
-            if ([[aVeiw identifier] isEqualToString:@"cView"])
-            {
+            if ([[aVeiw identifier] isEqualToString:@"cView"]) {
                 addzest = false;
                 break;
             }
-        }
-        // If not found add vibrant view
         if (addzest)
         {
             NSVisualEffectView *vibrant=[[vibrantClass alloc] initWithFrame:[[theWindow contentView] bounds]];
@@ -89,12 +81,8 @@ bool enabled = true;
 }
 
 -(void)zest_setKey:(NSString*)key {
-    // Add application to blacklist if it doesn't already exist
     if ([sharedDict objectForKey:key] == nil)
-    {
-        // NSLog(@"Adding key: %@", key);
         [sharedPrefs setInteger:0 forKey:key];
-    }
 }
 
 -(void)zest_setupPrefs {
@@ -103,7 +91,7 @@ bool enabled = true;
         sharedPrefs = [[NSUserDefaults alloc] initWithSuiteName:@"org.w0lf.zestyWin"];
         sharedDict = [sharedPrefs dictionaryRepresentation];
     }
-    // Manual blacklist
+    // Blacklist
     [plugin zest_setKey:@"com.apple.finder"];
     [plugin zest_setKey:@"com.apple.iTunes"];
     [plugin zest_setKey:@"com.apple.Terminal"];
@@ -114,24 +102,7 @@ bool enabled = true;
     [plugin zest_setKey:@"com.google.Chrome.canary"];
     [plugin zest_setKey:@"com.apple.TextEdit"];
     [plugin zest_setKey:@"org.w0lf.cDock"];
-    [plugin zest_setKey:@"org.w0lf.cDock-GUI"];
-    
     [sharedPrefs synchronize];
 }
 
 @end
-
-ZKSwizzleInterface(_zest_NSWindow, NSWindow, NSResponder);
-@implementation _zest_NSWindow
-
-- (void)becomeKeyWindow {
-    ZKOrig(void);
-    // If the window gained focus check if it has a vibrant view or not and if doesn't add one
-    if (enabled)
-    {
-        [plugin zest_addView:(NSWindow*)self];
-    }
-}
-
-@end
-
