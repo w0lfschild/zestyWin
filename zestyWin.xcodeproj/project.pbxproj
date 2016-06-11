@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB16B3571BA7D863009F455F /* loadZest.m in Sources */ = {isa = PBXBuildFile; fileRef = FB16B3561BA7D863009F455F /* loadZest.m */; };
+		FB16B3571BA7D863009F455F /* zestyWin.m in Sources */ = {isa = PBXBuildFile; fileRef = FB16B3561BA7D863009F455F /* zestyWin.m */; };
 		FB61D7421C3CA27D00FA3C4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB61D7411C3CA27D00FA3C4C /* AppDelegate.m */; };
 		FB61D7451C3CA27D00FA3C4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB61D7441C3CA27D00FA3C4C /* main.m */; };
 		FB61D7471C3CA27D00FA3C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB61D7461C3CA27D00FA3C4C /* Assets.xcassets */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		FB16B34C1BA7D821009F455F /* zestyWin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zestyWin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB16B34F1BA7D821009F455F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB16B3561BA7D863009F455F /* loadZest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loadZest.m; sourceTree = "<group>"; };
+		FB16B3561BA7D863009F455F /* zestyWin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zestyWin.m; sourceTree = "<group>"; };
 		FB61D73E1C3CA27D00FA3C4C /* zestyWin-GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zestyWin-GUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB61D7401C3CA27D00FA3C4C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FB61D7411C3CA27D00FA3C4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				FB16B34F1BA7D821009F455F /* Info.plist */,
-				FB16B3561BA7D863009F455F /* loadZest.m */,
+				FB16B3561BA7D863009F455F /* zestyWin.m */,
 			);
 			path = zestyWin;
 			sourceTree = "<group>";
@@ -222,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB16B3571BA7D863009F455F /* loadZest.m in Sources */,
+				FB16B3571BA7D863009F455F /* zestyWin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
