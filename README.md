@@ -5,7 +5,7 @@
 # Information:
 
 - Designed for 10.10+   
-- zestyWin is a SIMBL plugin that tries to add Vibrancy to every application window on OS X    
+- zestyWin is a MacForge plugin that tries to add Vibrancy to every application window on MacOS  
 - Author: [w0lfschild](https://github.com/w0lfschild)
 
 # Note:
@@ -17,11 +17,8 @@
 
 # Installation:
 
-1. Download [mySIMBL](https://github.com/w0lfschild/app_updates/raw/master/mySIMBL/mySIMBL_0.2.5.zip)
-2. Download [zestyWin](https://github.com/w0lfschild/zestyWin/raw/master/build/zestyWin.zip)
-3. Unzip downloads
-4. Open `zestyWin.bundle` with `mySIMBL.app`
-5. Restart any application to have zestWin plugin loaded
+1. Download [MacForge](https://github.com/w0lfschild/app_updates/raw/master/MacForge/MacForge.zip)
+2. Download [zestyWin](https://www.macenhance.com/mflink?macforge://github.com/w0lfschild/myRepo/raw/master/mytweaks/org.w0lf.zestyWin)
 	
 ### License:
 Pretty much the BSD license, just don't repackage it and call it your own please!    
